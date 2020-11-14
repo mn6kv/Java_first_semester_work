@@ -19,7 +19,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     //language=SQL
     private static final String SQL_FIND_ALL = "select * from account";
     //language=SQL
-    private static final String SQL_SAVE = "insert into account (email, name, hash_password, uuid) values (?, ?, ?, ?)";
+    private static final String SQL_SAVE = "insert into account (email, name, hash_password, session) values (?, ?, ?, ?)";
     //language=SQL
     private static final String SQL_FIND_SESSION_BY_USER_ID = "select id, session from account where id = ?";
     //language=SQL

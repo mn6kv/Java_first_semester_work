@@ -5,7 +5,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.itis.repositories.UsersRepository;
 import ru.itis.repositories.UsersRepositoryJdbcTemplateImpl;
+import ru.itis.repositories.productsRepository.*;
 import ru.itis.services.*;
+import ru.itis.util.ProductsUtil;
 import ru.itis.util.SessionUtil;
 import ru.itis.util.UserUtil;
 
@@ -30,15 +32,22 @@ public class Listener implements ServletContextListener {
 
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
-        SignInService signInService = new SignInServiceImpl(usersRepository, passwordEncoder);
-        SignUpService signUpService = new SignUpServiceImpl(usersRepository, passwordEncoder);
+        DoorRepository doorRepository = new DoorRepositoryJdbcTemplateImpl(dataSource);
+        CasementRepository casementRepository = new CasementRepositoryJdbcImpl(dataSource);
+        PartitionRepository partitionRepository = new PartitionRepositoryJdbcImpl(dataSource);
+
         SessionUtil sessionUtil = new SessionUtil(usersRepository);
         UserUtil userUtil = new UserUtil(usersRepository);
+        ProductsUtil productsUtil = new ProductsUtil(doorRepository, casementRepository, partitionRepository);
+
+        SignInService signInService = new SignInServiceImpl(usersRepository, passwordEncoder);
+        SignUpService signUpService = new SignUpServiceImpl(usersRepository, passwordEncoder);
 
         servletContext.setAttribute("signInService", signInService);
         servletContext.setAttribute("signUpService", signUpService);
         servletContext.setAttribute("sessionUtil", sessionUtil);
         servletContext.setAttribute("userUtil", userUtil);
+        servletContext.setAttribute("productsUtil", productsUtil);
     }
 
     @Override

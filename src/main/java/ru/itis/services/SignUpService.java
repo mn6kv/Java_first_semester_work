@@ -3,6 +3,6 @@ package ru.itis.services;
 import ru.itis.dto.UserForm;
 
 public interface SignUpService {
-    void signUp(UserForm userForm, String uuid);
+    boolean signUp(UserForm userForm, String session);
     boolean isExistByEmail(String email);
 }

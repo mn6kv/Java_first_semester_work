@@ -1,0 +1,26 @@
+.news {
+    margin-left: 35px;
+    margin-top: 25px;
+    width: 400px;
+    height: 600px;
+    background-color: #ffffff;
+    display: block;
+    float: left;
+}
+
+#news-pic {
+    width: 400px;
+    height: 250px;
+}
+
+#news-title {
+    font-family: Open Sans Condensed Bold;
+    margin-left: 10px;
+}
+
+#news-content {
+    font-family: Open Sans Condensed Bold;
+    margin-left: 10px;
+    font-size: medium;
+    word-wrap: break-word;
+}

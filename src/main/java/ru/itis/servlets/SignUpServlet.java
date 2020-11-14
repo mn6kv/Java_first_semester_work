@@ -2,7 +2,6 @@ package ru.itis.servlets;
 
 import ru.itis.dto.UserForm;
 import ru.itis.services.SignUpService;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.UUID;
 
 @WebServlet("/signUp")
 public class SignUpServlet extends HttpServlet {
@@ -45,7 +43,11 @@ public class SignUpServlet extends HttpServlet {
         cookie.setMaxAge(60 * 60 * 60);
         resp.addCookie(cookie);
 
-            signUpService.signUp(userForm, sessionId);
-        resp.sendRedirect("/main");
+        if (!signUpService.signUp(userForm, sessionId)) {
+            req.setAttribute("emailExist", "EMAIL IS EXISTS");
+            resp.sendRedirect("/signUp");
+        }
+        else
+            resp.sendRedirect("/main");
     }
 }
