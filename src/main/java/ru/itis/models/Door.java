@@ -8,6 +8,14 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class Door extends Product {
+
     private String productClass;
     private Integer price;
+
+    public static class DoorBuilder extends ProductBuilder {
+        DoorBuilder() {
+            super();
+        }
+    }
+
 }

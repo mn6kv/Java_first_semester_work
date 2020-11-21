@@ -28,7 +28,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .session(session)
                 .build();
 
-        if (UserDto.userFromOptional(usersRepository.findByEmail(user.getEmail())) != null)
+        if (User.fromOptional(usersRepository.findByEmail(user.getEmail())) != null)
             return false;
 
         usersRepository.save(user);

@@ -28,6 +28,8 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     private static final String SQL_FIND_SESSION_BY_SESSION_ID = "select id, session from account where session = ?";
     //language=SQL
     private static final String SQL_FIND_USER_BY_ID = "select * from account where id = ?";
+    //language=SQL
+    private static final String SQL_FIND_USER_BY_SESSION_ID = "select * from account where session = ?";
 
     private RowMapper<User> userRowMapper = (row, rowNumber) -> {
         return User.builder()
@@ -72,6 +74,15 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     public Optional<SessionDto> findSessionByUserId(Long userId) {
         try {
             return Optional.of(jdbcTemplate.queryForObject(SQL_FIND_SESSION_BY_USER_ID, sessionDtoRowMapper, userId));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<User> findUserBySessionId(String session) {
+        try {
+            return Optional.of(jdbcTemplate.queryForObject(SQL_FIND_USER_BY_SESSION_ID, userRowMapper, session));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }

@@ -4,48 +4,39 @@ import ru.itis.models.Casement;
 import ru.itis.models.Door;
 import ru.itis.models.Partition;
 import ru.itis.models.Product;
-import ru.itis.repositories.productsRepository.CasementRepository;
-import ru.itis.repositories.productsRepository.DoorRepository;
-import ru.itis.repositories.productsRepository.PartitionRepository;
+import ru.itis.repositories.productsRepository.ProductsRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsUtil {
 
-    static DoorRepository doorRepository;
-    static CasementRepository casementRepository;
-    static PartitionRepository partitionRepository;
+    static ProductsRepository productsRepository;
 
-    public ProductsUtil(
-            DoorRepository doorRepository,
-            CasementRepository casementRepository,
-            PartitionRepository partitionRepository) {
-
-        this.doorRepository = doorRepository;
-        this.casementRepository = casementRepository;
-        this.partitionRepository = partitionRepository;
+    public ProductsUtil(ProductsRepository productsRepository) {
+        this.productsRepository = productsRepository;
     }
 
     public List<Door> getDoors() {
-        return doorRepository.findAll();
+        return productsRepository.findDoors();
     }
 
     public List<Casement> getCasements() {
-        return casementRepository.findAll();
+        return productsRepository.findCasements();
     }
 
     public List<Partition> getPartitions() {
-        return partitionRepository.findAll();
+        return productsRepository.findPartitions();
     }
 
     public List<Product> getAllProducts() {
-        List<Product> products = new ArrayList<>();
+        return productsRepository.findAll();
+    }
 
-        products.addAll(this.getDoors());
-        products.addAll(this.getCasements());
-        products.addAll(this.getPartitions());
+    public Product getById(Long id) {
+        return Product.fromOptional(productsRepository.findById(id));
+    }
 
-        return products;
+    public Long getId(Product product) {
+        return productsRepository.getId(product);
     }
 }

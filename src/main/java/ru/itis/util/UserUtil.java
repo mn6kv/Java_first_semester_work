@@ -18,4 +18,8 @@ public class UserUtil {
     public Optional<User> getUserById(Long id) {
         return usersRepository.findUserById(id);
     }
+
+    public User getUserBySessionId(String session) {
+        return User.fromOptional(usersRepository.findUserBySessionId(session));
+    }
 }

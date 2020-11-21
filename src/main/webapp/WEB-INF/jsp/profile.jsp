@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ru.itis.models.User" %>
+<%@ page import="ru.itis.dto.UserDto" %><%--
   Created by IntelliJ IDEA.
   User: under
   Date: 09.11.2020
@@ -8,9 +9,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Profile</title>
 </head>
 <body>
-<span>Profile</span>
+
+<% User user = (User) request.getAttribute("userForJsp"); %>
+<p>$<%user.getName();%></p>
+<p>$<%user.getEmail();%></p>
+
 </body>
 </html>

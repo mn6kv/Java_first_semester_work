@@ -29,4 +29,16 @@ public class SignInServiceImpl implements SignInService {
         }
         return null;
     }
+
+    @Override
+    public User signInWithUser(UserForm userForm) {
+        Optional<User> userOptional = usersRepository.findByEmail(userForm.getEmail());
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (passwordEncoder.matches(userForm.getPassword(), user.getHashPassword())) {
+                return user;
+            } else return null;
+        }
+        return null;
+    }
 }

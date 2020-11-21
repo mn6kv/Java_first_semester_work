@@ -27,8 +27,4 @@ public class UserDto {
     public static UserDto fromOptional(Optional<UserDto> optionalUserDto) {
         return optionalUserDto.orElse(null);
     }
-
-    public static User userFromOptional(Optional<User> optionalUser) {
-        return optionalUser.orElse(null);
-    }
 }

@@ -1,0 +1,169 @@
+body{
+    background:white;
+    width: 100%;
+}
+.navbar-header{
+    background-color:gray;
+    height: 100px;
+    width:100%;
+}
+.marquee{
+    width:100%;
+    white-space:nowrap;
+    overflow:hidden;
+    background-color: yellow;
+}
+.marquee span {
+    color: black;
+    font-size:12px;
+    display:inline-block;
+    padding-left:100%;
+    -webkit-animation: marquee 30s infinite linear;
+    animation: marquee 10s infinite linear;
+}
+
+@-webkit-keyframes marquee {
+    0%{-webkit-transform: translate(0, 0);}
+    100%{-webkit-transform: translate(-100%, 0);}
+}
+@keyframes marquee{
+    0%{transform: translate(0, 0);}
+    100%{transform: translate(-100%, 0)}
+}
+* {box-sizing: border-box;}
+form {
+    position: relative;
+    width: 700px;
+    margin-right: 200px;
+}
+input, button {
+    border: none;
+    outline: none;
+    border-radius: 3px;
+}
+input {
+    margin-right: auto;
+    width: 600px;
+    height: 30px;
+    background:ghostwhite;
+}
+button {
+    height:30px;
+    width: 70px;
+    position: absolute;
+    background:white;
+}
+button:before {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button:before {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: gainsboro;
+    font-size: 20px;
+    font-weight: bold;
+}
+.shrift{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 15px;
+    color: black;
+}
+.logo{
+    margin-left:1240px;
+}
+.signIn{
+    font-size: 13px;
+    margin-left: 1310px;
+    size: 50px 50px;
+    background-color: white;
+}
+
+.categoryall {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 15px;
+    margin-left: 30px;
+    color: black;
+}
+.catside a:hover {background:white; color:black;}
+.dop{
+    font-size: 9px;
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+}
+.test{
+    height:40px;
+    width:180px;
+    color: white;
+    font-size:13px;
+    font-family: 'Quicksand', sans-serif;
+}
+.gdg{
+    margin-left: 20px;
+    width: 400px;
+    height: 25px;
+}
+.mybtn{
+    margin-left:500px;
+    text-align: center;
+    size: 20px 20px;
+    background:black;
+    tansition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    text-transform: uppercase;
+}
+.mybtn:hover {
+    color: black;
+    background: gainsboro;
+    tansition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+}
+.column {
+    -webkit-column-width: 100px;
+    -moz-column-width: 100px;
+    column-width: 100px;
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    column-count: 5;
+    -webkit-column-gap: 30px;
+    -moz-column-gap: 30px;
+    column-gap: 30px;
+    -webkit-column-rule: 1px solid #ccc;
+    -moz-column-rule: 1px solid #ccc;
+    column-rule: 1px solid #ccc;
+}
+.story{
+    font-size: 10px;
+    color: black;
+    background-color: ghostwhite;
+}
+
+div.block{
+    display:inline-block;
+    padding:25px;
+    margin:15px;
+}
+div.block:hover{
+    margin:5px;
+    padding:35px;
+}
+.form{
+    font-family:'Open Sans Condensed', sans-serif;
+    font-size: 10px;
+    width: 470px;
+}
+.formclosebtn {
+    height: 50px;
+    width: 150px;
+    background-color: black;
+    color: white;
+}
+.savebtn {
+    width: 100px;
+    margin-left: 30%;
+    height: 50px;
+    color: white;
+    background-color: black;
+}

@@ -8,6 +8,14 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class Casement extends Product {
+
         private String productClass;
         private Integer price;
+
+        public static class CasementBuilder extends ProductBuilder {
+                CasementBuilder() {
+                        super();
+                }
+        }
+
 }

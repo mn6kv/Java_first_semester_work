@@ -52,8 +52,6 @@ public class CookieFilter implements Filter {
 
         Boolean isSessionExists = httpSession != null;
         Boolean isAuthenticated = false;
-        Boolean isRequestOnOpenPage = request.getRequestURI().equals("/signIn") ||
-                request.getRequestURI().equals("/signUp");
 
         if (isSessionExists)
             isAuthenticated = httpSession.getAttribute("user") != null;
@@ -73,7 +71,7 @@ public class CookieFilter implements Filter {
             try {
                 SessionDto sessionDto = SessionDto.getFromOptional(sessionUtil.getSessionById(sessionId));
                 if (sessionDto != null) {
-                    User user = UserDto.userFromOptional(userUtil.getUserById(sessionDto.getUserId()));
+                    User user = User.fromOptional(userUtil.getUserById(sessionDto.getUserId()));
                     httpSession.setAttribute("user", user);
                     httpSession.setAttribute("userId", user.getId());
                     httpSession.setAttribute("username", user.getName());
