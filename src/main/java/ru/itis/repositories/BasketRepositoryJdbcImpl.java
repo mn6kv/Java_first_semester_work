@@ -24,7 +24,7 @@ public class BasketRepositoryJdbcImpl implements BasketRepository {
     //language=SQL
     private static final String SQL_ADD_TO_BASKET = "insert into basket(userid, productid) values (?, ?)";
     //language=SQL
-    private static final String SQL_DELETE_FOR_USER = "delete from basket where id = ?";
+    private static final String SQL_DELETE_FOR_USER = "delete from basket where userid = ?";
     //language=SQL
     private static final String SQL_GET_FOR_USER = "select product.id, class, price, type from basket join product " +
             "on basket.productid = product.id where userid = ?";

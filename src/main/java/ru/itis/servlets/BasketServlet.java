@@ -29,6 +29,22 @@ public class BasketServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("in Basket");
+
+        User user = (User) req.getSession().getAttribute("user");
+        Long userId = null;
+
+        System.out.println("user" + user);
+
+        if (user != null) {
+            userId = user.getId();
+            List<Product> productsInBasket = basketService.getForUser(userId);
+            System.out.println("productsInBasket\n" + productsInBasket);
+            req.setAttribute("productForJSP", productsInBasket);
+        }
+
+        System.out.println(user);
+
         req.getRequestDispatcher("/WEB-INF/jsp/basket.jsp").forward(req, resp);
     }
 
@@ -38,16 +54,14 @@ public class BasketServlet extends HttpServlet {
 //        System.out.println(userId);
 //        List<Product> productsInBasket = basketService.getForUser(userId);
 
+        String bought = req.getParameter("bought");
+
         User user = (User) req.getSession().getAttribute("user");
-        Long userId = null;
+        System.out.println("doPost" + user);
 
-        if (user != null) {
-            userId = user.getId();
-            List<Product> productsInBasket = basketService.getForUser(userId);
-            req.setAttribute("productForJSP", productsInBasket);
+        if (bought.equals("true")) {
+            basketService.deleteForUser(user.getId());
+            resp.sendRedirect("/basket");
         }
-
-        System.out.println(user);
-
     }
 }
