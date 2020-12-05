@@ -3,13 +3,11 @@ package ru.itis.listener;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.itis.repositories.BasketRepository;
-import ru.itis.repositories.BasketRepositoryJdbcImpl;
-import ru.itis.repositories.UsersRepository;
-import ru.itis.repositories.UsersRepositoryJdbcTemplateImpl;
+import ru.itis.repositories.*;
 import ru.itis.repositories.productsRepository.*;
 import ru.itis.repositories.productsRepository.deprecated.*;
 import ru.itis.services.*;
+import ru.itis.util.CallsUtil;
 import ru.itis.util.ProductsUtil;
 import ru.itis.util.SessionUtil;
 import ru.itis.util.UserUtil;
@@ -40,10 +38,12 @@ public class Listener implements ServletContextListener {
         PartitionRepository partitionRepository = new PartitionRepositoryJdbcImpl(dataSource);
         ProductsRepository productsRepository = new ProductsRepositoryJdbcImpl(dataSource);
         BasketRepository basketRepository = new BasketRepositoryJdbcImpl(dataSource);
+        CallsRepository callsRepository = new CallsRepositoryImpl(dataSource);
 
         SessionUtil sessionUtil = new SessionUtil(usersRepository);
         UserUtil userUtil = new UserUtil(usersRepository);
         ProductsUtil productsUtil = new ProductsUtil(productsRepository);
+        CallsUtil callsUtil = new CallsUtil(callsRepository);
 
         SignInService signInService = new SignInServiceImpl(usersRepository, passwordEncoder);
         SignUpService signUpService = new SignUpServiceImpl(usersRepository, passwordEncoder);
@@ -55,6 +55,7 @@ public class Listener implements ServletContextListener {
         servletContext.setAttribute("userUtil", userUtil);
         servletContext.setAttribute("productsUtil", productsUtil);
         servletContext.setAttribute("basketService", basketService);
+        servletContext.setAttribute("callsUtil", callsUtil);
     }
 
     @Override

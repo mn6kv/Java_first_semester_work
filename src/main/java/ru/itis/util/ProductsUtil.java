@@ -39,4 +39,8 @@ public class ProductsUtil {
     public Long getId(Product product) {
         return productsRepository.getId(product);
     }
+
+    public List<Product> getByTypeRegex (String regex) {
+        return productsRepository.findByTypeStart(regex);
+    }
 }

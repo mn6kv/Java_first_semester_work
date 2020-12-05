@@ -4,6 +4,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ru.itis.dto.SessionDto;
+import ru.itis.models.Buyer;
 import ru.itis.models.User;
 
 import javax.sql.DataSource;
@@ -30,6 +31,10 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     private static final String SQL_FIND_USER_BY_ID = "select * from account where id = ?";
     //language=SQL
     private static final String SQL_FIND_USER_BY_SESSION_ID = "select * from account where session = ?";
+    //language=SQL
+    private static final String SQL_ADD_USER_TO_BUYERS = "insert into buyer(userId, name) values (?, ?)";
+    //language=SQL
+    private static final String SQL_FIND_BUYERS = "select * from buyer";
 
     private RowMapper<User> userRowMapper = (row, rowNumber) -> {
         return User.builder()
@@ -48,8 +53,25 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
                 .build();
     };
 
+    private RowMapper<User> buyerRowMapper = (row, rowMapper) -> {
+        return User.builder()
+                .id(row.getLong("userId"))
+                .name(row.getString("name"))
+                .build();
+    };
+
     public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    @Override
+    public List<User> getBuyers() {
+        return jdbcTemplate.query(SQL_FIND_BUYERS, buyerRowMapper);
+    }
+
+    @Override
+    public void addUserToBuyers(User user) {
+        jdbcTemplate.update(SQL_ADD_USER_TO_BUYERS, user.getId(), user.getName());
     }
 
     @Override

@@ -31,6 +31,8 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
     //language=SQL
     private static final String SQL_GET_ID = "select id from product " +
             "where class = ? and type = ?";
+    //language=SQL
+    private static final String SQL_FIND_BY_TYPE_START = "select * from product where (select regexp_matches(type, ?) notnull);";
 
 
     private RowMapper<Door> doorRowMapper = (row, rowMapper) -> {
@@ -67,7 +69,10 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
+    @Override
+    public List<Product> findByTypeStart(String regex) {
+        return jdbcTemplate.query(SQL_FIND_BY_TYPE_START, productRowMapper, regex);
+    }
 
     @Override
     public void save(Product entity) {

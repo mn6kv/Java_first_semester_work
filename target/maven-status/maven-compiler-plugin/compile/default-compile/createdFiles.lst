@@ -1,3 +1,4 @@
+ru\itis\models\Buyer.class
 ru\itis\servlets\ProductsServlet.class
 ru\itis\repositories\UsersRepository.class
 ru\itis\repositories\productsRepository\deprecated\CasementRepository.class
@@ -24,10 +25,15 @@ ru\itis\repositories\productsRepository\ProductsRepository.class
 ru\itis\services\BasketServiceImpl.class
 ru\itis\services\SignInService.class
 ru\itis\util\UserUtil.class
+ru\itis\models\NameRefactorer.class
+ru\itis\servlets\BuyersServlet.class
 ru\itis\models\Product.class
 ru\itis\services\BasketService.class
+ru\itis\models\NameRefactorer$NameRefactorerBuilder.class
 ru\itis\util\SessionUtil.class
 ru\itis\dto\SessionDto.class
+ru\itis\models\Buyer$BuyerBuilder.class
+ru\itis\repositories\CallsRepository.class
 ru\itis\repositories\UsersRepositoryJdbcTemplateImpl.class
 ru\itis\models\Casement$CasementBuilder.class
 ru\itis\servlets\SignUpServlet.class
@@ -36,6 +42,7 @@ ru\itis\repositories\BasketRepository.class
 ru\itis\util\ProductsUtil.class
 ru\itis\filters\AuthentificationFilter.class
 ru\itis\models\ProductClassRefactor.class
+ru\itis\repositories\CallsRepositoryImpl.class
 ru\itis\services\ProfileService.class
 ru\itis\dto\UserForm$UserFormBuilder.class
 ru\itis\models\User$UserBuilder.class
@@ -49,3 +56,4 @@ ru\itis\models\Product$ProductBuilder.class
 ru\itis\dto\UserForm.class
 ru\itis\models\Partition$PartitionBuilder.class
 ru\itis\servlets\MainPageServlet.class
+ru\itis\util\CallsUtil.class

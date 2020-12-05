@@ -1,9 +1,11 @@
 package ru.itis.servlets;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import ru.itis.models.Product;
 import ru.itis.models.User;
 import ru.itis.services.BasketService;
+import ru.itis.util.UserUtil;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -20,11 +22,14 @@ import java.util.List;
 public class BasketServlet extends HttpServlet {
 
     BasketService basketService;
+    UserUtil userUtil;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
         basketService = (BasketService) context.getAttribute("basketService");
+        userUtil = (UserUtil) context.getAttribute("userUtil");
     }
 
     @Override
@@ -50,9 +55,6 @@ public class BasketServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        Integer userId = (Integer) req.getSession().getAttribute("userId");
-//        System.out.println(userId);
-//        List<Product> productsInBasket = basketService.getForUser(userId);
 
         String bought = req.getParameter("bought");
 
@@ -61,6 +63,7 @@ public class BasketServlet extends HttpServlet {
 
         if (bought.equals("true")) {
             basketService.deleteForUser(user.getId());
+            userUtil.addUserToBuyers(user);
             resp.sendRedirect("/basket");
         }
     }

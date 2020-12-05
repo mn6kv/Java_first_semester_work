@@ -20,4 +20,11 @@ public class User {
     public static User fromOptional(Optional<User> optionalUser) {
         return optionalUser.orElse(null);
     }
+
+    public static User fromBuyer(Buyer buyer) {
+        return User.builder()
+                .id(buyer.getUserId())
+                .name(buyer.getName())
+                .build();
+    }
 }

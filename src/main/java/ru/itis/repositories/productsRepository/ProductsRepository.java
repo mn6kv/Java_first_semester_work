@@ -15,4 +15,5 @@ public interface ProductsRepository extends CrudRepository<Product> {
     List<Partition> findPartitions();
     Optional<List<Product>> findByType(String type);
     Long getId(Product product);
+    List<Product> findByTypeStart(String typeStart);
 }

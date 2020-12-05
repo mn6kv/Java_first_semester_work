@@ -21,7 +21,12 @@ body{
     -webkit-animation: marquee 30s infinite linear;
     animation: marquee 10s infinite linear;
 }
-
+hr {
+    border: none; /* Убираем границу */
+    background-color: black; /* Цвет линии */
+    color: black; /* Цвет линии для IE6-7 */
+    height: 2px; /* Толщина линии */
+}
 @-webkit-keyframes marquee {
     0%{-webkit-transform: translate(0, 0);}
     100%{-webkit-transform: translate(-100%, 0);}
