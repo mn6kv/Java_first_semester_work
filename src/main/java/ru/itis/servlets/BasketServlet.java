@@ -37,13 +37,13 @@ public class BasketServlet extends HttpServlet {
         System.out.println("in Basket");
 
         User user = (User) req.getSession().getAttribute("user");
-        Long userId = null;
+        Long user_id = null;
 
         System.out.println("user" + user);
 
         if (user != null) {
-            userId = user.getId();
-            List<Product> productsInBasket = basketService.getForUser(userId);
+            user_id = user.getId();
+            List<Product> productsInBasket = basketService.getForUser(user_id);
             System.out.println("productsInBasket\n" + productsInBasket);
             req.setAttribute("productForJSP", productsInBasket);
         }

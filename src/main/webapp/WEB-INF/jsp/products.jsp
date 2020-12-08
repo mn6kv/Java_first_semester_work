@@ -131,6 +131,9 @@
             <li class="nav-item">
                 <a class="nav-link active" href="/products">Продукты<span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/buyers">Покупатели<span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         <form action="/signIn" method="post">
             <li class="nav-item active">

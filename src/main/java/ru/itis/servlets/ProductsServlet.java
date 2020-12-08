@@ -54,7 +54,7 @@ public class ProductsServlet extends HttpServlet {
 //        ProductClassRefactor productClassRefactor = objectMapper.readValue(req.getReader(), ProductClassRefactor.class);
 //        System.out.println(productClassRefactor);
 //        System.out.println(resp.getContentType());
-//        Long userId = (Long) req.getSession().getAttribute("userId");
+//        Long user_id = (Long) req.getSession().getAttribute("user_id");
 
 //        TypeRefactorer typeRefactorer = objectMapper.readValue(req.getReader(), TypeRefactorer.class);
 //        System.out.println(typeRefactorer);
@@ -79,21 +79,21 @@ public class ProductsServlet extends HttpServlet {
 //        }
 
         User user = (User) req.getSession().getAttribute("user");
-        Long userId = null;
+        Long user_id = null;
 
         if (user != null)
-            userId = user.getId();
+            user_id = user.getId();
         System.out.println("user" + user);
 
-        if (userId == null)
+        if (user_id == null)
             resp.sendRedirect("/signIn");
 
         else {
-            Long productId = Long.valueOf(req.getParameter("id"));
-            System.out.println(productId);
-            System.out.println(userId);
+            Long product_id = Long.valueOf(req.getParameter("id"));
+            System.out.println(product_id);
+            System.out.println(user_id);
 
-            basketService.saveById(productId, userId);
+            basketService.saveById(product_id, user_id);
             resp.sendRedirect("/products");
         }
     }

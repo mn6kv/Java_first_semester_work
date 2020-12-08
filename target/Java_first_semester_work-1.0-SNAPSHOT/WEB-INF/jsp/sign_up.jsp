@@ -20,7 +20,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <form action="/main"method="post">
-        <a class="navbar-brand" href="#">Двери от Мишки</a>
+        <a class="navbar-brand" href="/main">Двери от Мишки</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,8 +30,8 @@
             <!--            <li class="nav-item active">-->
             <!--                    <a class="nav-link" href="#">Список товаров <span class="sr-only">(current)</span></a>-->
             <!--            </li>-->
-            <li class="nav-item active">
-                <a class="nav-link" href="">Информация о моем магазине </a>
+            <li class="nav-item">
+                <a class="nav-link" href="/main">Информация о моем магазине </a>
             </li>
             <form action="/basket" method="post">
                 <li class="nav-item">
@@ -40,6 +40,9 @@
             </form>
             <li class="nav-item">
                 <a class="nav-link" href="/products">Продукты<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/buyers">Покупатели<span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <form action="/signIn" method="post">
